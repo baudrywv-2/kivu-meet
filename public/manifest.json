@@ -1,0 +1,24 @@
+{
+  "name": "Kivu Meet",
+  "short_name": "Kivu Meet",
+  "description": "Discover people nearby in Goma, Kinshasa & Bukavu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fef2f2",
+  "theme_color": "#e11d48",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
