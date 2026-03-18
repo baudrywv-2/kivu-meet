@@ -36,6 +36,17 @@ export async function signInWithEmail(formData: FormData) {
   redirect(safeRedirectPath(formData.get('redirect')));
 }
 
+export async function resendConfirmationEmail(email: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.auth.resend({
+    type: 'signup',
+    email,
+    options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback` },
+  });
+  if (error) return { error: error.message };
+  return { success: true, message: 'Confirmation email sent. Please check your inbox.' };
+}
+
 export async function resetPasswordForEmail(email: string) {
   const supabase = await createClient();
   const { error } = await supabase.auth.resetPasswordForEmail(email, {

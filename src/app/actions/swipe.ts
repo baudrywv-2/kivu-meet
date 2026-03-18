@@ -44,11 +44,14 @@ export async function likeUser(likedId: string, isSuperLike = false): Promise<{ 
     }
   }
 
-  const { error } = await supabase.from('likes').insert({
-    liker_id: user.id,
-    liked_id: likedId,
-    is_super_like: isSuperLike,
-  });
+  const { error } = await supabase.from('likes').upsert(
+    {
+      liker_id: user.id,
+      liked_id: likedId,
+      is_super_like: isSuperLike,
+    },
+    { onConflict: 'liker_id,liked_id', ignoreDuplicates: true }
+  );
 
   if (error) return { error: error.message };
 
